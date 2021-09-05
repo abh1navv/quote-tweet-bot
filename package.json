@@ -1,0 +1,22 @@
+{
+  "name": "quote-tweet-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abh1navv/quote-tweet-bot.git"
+  },
+  "author": "Abhinav Pandey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abh1navv/quote-tweet-bot/issues"
+  },
+  "homepage": "https://github.com/abh1navv/quote-tweet-bot#readme",
+  "dependencies": {
+    "twitter-v2": "^1.1.0"
+  }
+}
