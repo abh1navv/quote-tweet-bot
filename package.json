@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/abh1navv/quote-tweet-bot#readme",
   "dependencies": {
-    "twitter-v2": "^1.1.0"
+    "twitter-lite": "^1.1.0",
+    "twitter-v2": "*"
   }
 }
