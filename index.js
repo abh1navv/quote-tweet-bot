@@ -42,13 +42,14 @@ function getFromClauses() {
 
 async function main() {
   let yesterday = new Date();
+
   yesterday.setDate(yesterday.getDate())
-  yesterday.setHours((yesterday.getHours() - 12)%24)
-  const fullQuery = '('+getFromClauses()+')' + '-is:reply -is:retweet';
-  console.log("Query length: " + fullQuery)
+  yesterday.setHours(yesterday.getHours() - 3);  
+  const fullQuery = '('+getFromClauses()+')'; //+'-is:reply -is:retweet';
+  console.log("Query length: " + fullQuery.length)
   let params = {
     start_time: yesterday.toISOString(),
-    max_results: 10,
+    max_results: 30,
     tweet: {
       fields: 'public_metrics'
     },
