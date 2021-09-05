@@ -44,8 +44,8 @@ async function main() {
   let yesterday = new Date();
   yesterday.setDate(yesterday.getDate())
   yesterday.setHours((yesterday.getHours() - 12)%24)
-  const fullQuery = getFromClauses() + '-is:reply -is:retweet';
-  console.log("Query length: " + fullQuery.length)
+  const fullQuery = '('+getFromClauses()+')' + '-is:reply -is:retweet';
+  console.log("Query length: " + fullQuery)
   let params = {
     start_time: yesterday.toISOString(),
     max_results: 10,
