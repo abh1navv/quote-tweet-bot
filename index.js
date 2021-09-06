@@ -29,9 +29,8 @@ function getBestTweet(data) {
   return bestTweetId;
 }
 
-function getFromClauses() {
+function getFromClauses(userList) {
   let fromClause = "";
-  const userList = process.env.USER_LIST;
   const users = userList.split(",");
   for(const user in users) {
     fromClause += 'OR '+ 'from:' + users[user] + ' ';
@@ -42,10 +41,21 @@ function getFromClauses() {
 
 async function main() {
   let yesterday = new Date();
+  const mode = Math.random()*2;
 
+  // retweet big accounts - 40%
+  let userList = process.env.USER_LIST;
+  let reducedHours = 3;
+  
+  // promote smaller accounts - 60%
+  if(mode > 0.8) {
+    reducedHours = 8;
+    userList = process.env.SECOND_USER_LIST;
+  }
+  console.log(userList);
   yesterday.setDate(yesterday.getDate())
-  yesterday.setHours(yesterday.getHours() - 3);  
-  const fullQuery = '('+getFromClauses()+')'; //+'-is:reply -is:retweet';
+  yesterday.setHours(yesterday.getHours() - reducedHours);  
+  const fullQuery = '('+getFromClauses(userList)+')'; //+'-is:reply -is:retweet';
   console.log("Query length: " + fullQuery.length)
   let params = {
     start_time: yesterday.toISOString(),
