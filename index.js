@@ -45,17 +45,18 @@ async function main() {
 
   // retweet big accounts - 40%
   let userList = process.env.USER_LIST;
-  let reducedHours = 3;
+  let reducedHours = 5;
   
   // promote smaller accounts - 60%
-  if(mode > 0.8) {
-    reducedHours = 8;
+  if(mode > 0.7) {
+    reducedHours = 2;
     userList = process.env.SECOND_USER_LIST;
   }
   console.log(userList);
   yesterday.setDate(yesterday.getDate())
   yesterday.setHours(yesterday.getHours() - reducedHours);  
-  const fullQuery = '('+getFromClauses(userList)+')'; //+'-is:reply -is:retweet';
+  const fullQuery = '('+getFromClauses(userList)+') -is:reply'; 
+    //-is:retweet';
   console.log("Query length: " + fullQuery.length)
   let params = {
     start_time: yesterday.toISOString(),
