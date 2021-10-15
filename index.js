@@ -19,15 +19,15 @@ const user = new TwitterLite({
 
 async function main() {
   
-  let mode = Math.random()*2
+  let mode = Math.random()
   let userList = process.env.USER_LIST
-  let reducedHours = 4
-  if(mode > 0.7) {
-    reducedHours = 2
+  let reducedHours = 1
+  if(mode > 0.5) {
+    reducedHours = 1
     userList = process.env.SECOND_USER_LIST
   }
 
-  const fullQuery = '('+helper.getFromClauses(userList)+') -is:reply' 
+  const fullQuery = '('+helper.getFromClauses(userList)+') -is:reply -is:retweet' 
 
   let yesterday = new Date()
   yesterday.setDate(yesterday.getDate())
@@ -45,7 +45,7 @@ async function main() {
   const {meta, data, includes} = await app.get('tweets/search/recent' , params)
   if(meta.result_count > 0) {
     const {bestTweetId, bestTweetUser} = helper.getBestTweet(data)
-    if(Math.random() > 0.4) {
+    if(Math.random() > 0.6) {
       quoteTweetBestTweet(bestTweetId, bestTweetUser, includes)
     } else {
       retweetBestTweet(bestTweetId)
